@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { SuiPriceService } from './sui-price.service';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { ApiKeyAuth } from '../common/decorators/api-key-auth.decorator';
@@ -12,7 +12,7 @@ export class SuiPriceController {
   @Get()
   @ApiOperation({ summary: 'Get current SUI price' })
   @ApiResponse({ status: 200, description: 'Current SUI price' })
-  async getPrice() {
-    return this.suiPriceService.getCurrentPrice();
+  async getPrice(@Query('currency') currency: string) {
+    return this.suiPriceService.getCurrentPrice(currency);
   }
-} 
+}

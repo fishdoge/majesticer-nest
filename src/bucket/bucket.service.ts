@@ -1,6 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { BucketClient } from 'bucket-protocol-sdk';
+import { BucketClient, UserBottleInfo } from 'bucket-protocol-sdk';
 import { SuiPriceService } from 'src/sui-price/sui-price.service';
+
+const COIN_MAPPING = {
+  vSUI: 'volo-staked-sui',
+  SUI: 'sui',
+  afSUI: 'aftermath-staked-sui',
+  haSUI: 'haedal-staked-sui',
+};
 
 export function getLiquidateInfo(
   price: number,
@@ -17,6 +24,12 @@ export function getLiquidateInfo(
   return { CR, liquidatePrice };
 }
 
+type Bottle = {
+  bottle: UserBottleInfo;
+  collateralRatio: number;
+  liquidatePrice: number;
+};
+
 @Injectable()
 export class BucketService {
   constructor(private readonly suiPriceService: SuiPriceService) {}
@@ -25,23 +38,28 @@ export class BucketService {
     const bucket = new BucketClient();
     const bottles = await bucket.getUserBottles(address);
 
-    const { price } = await this.suiPriceService.getCurrentPrice();
-    console.log('price', price);
+    const data: Bottle[] = [];
+    for (const bottle of bottles) {
+      const { buckAmount, collateralAmount, token } = bottle;
 
-    const data = bottles.map((bottle) => {
-      const { buckAmount, collateralAmount } = bottle;
+      // TODO only support SUI / vSUI / afSUI / haSUI now
+      const { price } = await this.suiPriceService.getCurrentPrice(
+        COIN_MAPPING[token],
+      );
+      const { minCollateralRatio } = await bucket.getBucket(token);
       const { CR, liquidatePrice } = getLiquidateInfo(
         price,
         buckAmount,
         collateralAmount,
+        Number(minCollateralRatio) / 100,
       );
 
-      return {
+      data.push({
         bottle,
         collateralRatio: CR,
         liquidatePrice,
-      };
-    });
+      });
+    }
 
     return data;
   }
