@@ -24,7 +24,7 @@ import { BucketModule } from './bucket/bucket.module';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(ApiKeyMiddleware)
+      .apply()
       .exclude('/api-keys') // 排除 API key 創建的端點
       .forRoutes('*'); // 應用到所有其他路由
   }
