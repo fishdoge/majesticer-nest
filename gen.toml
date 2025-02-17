@@ -1,0 +1,13 @@
+[config]
+# will be set to mainnet by default if omitted
+rpc = "https://fullnode.mainnet.sui.io:443"
+
+[packages]
+# based on source code (syntax same as in Move.toml):
+# DeepBook = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/deepbook", rev = "releases/sui-v1.4.0-release" }
+
+# an on-chain package:
+Bucket = { id = "0x8c9b30689ab45a72911b3c9a7acf4953180ca3bb31d8f4e69fc4b11a93272242" }
+Bucket_Framework = { id = "0x00db9a10bb9536ab367b7d1ffa404c1d6c55f009076df1139dc108dd86608bbe" }    
+Bucket_Oracle = {id = "0x7d861b0e12694e099aba07b1fb49349abb06c96294739b5487b8d8261a60e17d" }
+Std = {id = "0x1"}
