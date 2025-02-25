@@ -7,10 +7,6 @@ import { SUI_CLOCK_OBJECT_ID } from '@mysten/sui/utils';
 import { fromHex, toHex } from '@mysten/sui/utils';
 import axios from 'axios';
 
-const POOL =
-  '0xe05dafb5133bcffb8d59f4e12465dc0e9faeaa05e3e342a08fe135800e3e4407'; // sui_usdc
-const MOCK_SENDER =
-  '0xfb58f3db6e97678ecbe3f3f9fa2a5f5f4f16cca39a5987aaede60df468c59661';
 const USDC =
   '0xdba34672e30cb065b1f93e3ab55318768fd6fef66c15942c9f7cb846e2f900e7::usdc::USDC';
 

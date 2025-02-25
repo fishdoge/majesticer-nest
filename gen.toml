@@ -11,3 +11,4 @@ Bucket = { id = "0x8c9b30689ab45a72911b3c9a7acf4953180ca3bb31d8f4e69fc4b11a93272
 Bucket_Framework = { id = "0x00db9a10bb9536ab367b7d1ffa404c1d6c55f009076df1139dc108dd86608bbe" }    
 Bucket_Oracle = {id = "0x7d861b0e12694e099aba07b1fb49349abb06c96294739b5487b8d8261a60e17d" }
 Std = {id = "0x1"}
+DEEP_BOOK = {id = "0x2c8d603bc51326b8c13cef9dd07031a408a48dddb541963357661df5d3204809"}
