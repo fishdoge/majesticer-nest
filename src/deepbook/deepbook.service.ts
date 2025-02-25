@@ -6,13 +6,13 @@ import { bcs } from '@mysten/sui/bcs';
 import type { Order as OrderT } from '../utils/types';
 import { getClient } from '../utils/client';
 import { COINS, DEV_SENDER } from '../utils/configs';
-import { Order } from '../utils/types';
 
 import { Injectable } from '@nestjs/common';
 import { SUI_CLOCK_OBJECT_ID } from '@mysten/sui/utils';
+import { PACKAGE_ID } from 'deep_book';
+import { Order } from 'deep_book/order/structs';
 
 export const DEEP_BOOK = {
-  package: '0x2c8d603bc51326b8c13cef9dd07031a408a48dddb541963357661df5d3204809',
   suiUsdcPool:
     '0xe05dafb5133bcffb8d59f4e12465dc0e9faeaa05e3e342a08fe135800e3e4407',
 };
@@ -22,7 +22,7 @@ export class DeepBookService {
   client: SuiClient;
   #address: string;
 
-  public static package = DEEP_BOOK.package;
+  public static package = PACKAGE_ID;
 
   constructor() {
     // Mainnet & dev sender are by default
@@ -30,26 +30,28 @@ export class DeepBookService {
     this.#address = DEV_SENDER;
   }
 
-  async getPrice(order: OrderT) {
-    const tx = new Transaction();
+  // async getPrice(order: Order) {
+  //   const tx = new Transaction();
+  //   const t = Order.reified();
+  //   console.log(toBcs(t));
 
-    tx.moveCall({
-      target: `${DeepBookService.package}::order::price`,
-      typeArguments: [],
-      arguments: [Order.serialize(order)],
-    });
+  //   tx.moveCall({
+  //     target: `${DeepBookService.package}::order::price`,
+  //     typeArguments: [],
+  //     arguments: [toBcs],
+  //   });
 
-    const res = await this.client.devInspectTransactionBlock({
-      sender: this.#address,
-      transactionBlock: tx,
-    });
+  //   const res = await this.client.devInspectTransactionBlock({
+  //     sender: this.#address,
+  //     transactionBlock: tx,
+  //   });
 
-    const price = bcs
-      .u64()
-      .parse(new Uint8Array(res.results![0].returnValues![0][0]));
+  //   const price = bcs
+  //     .u64()
+  //     .parse(new Uint8Array(res.results![0].returnValues![0][0]));
 
-    return price;
-  }
+  //   return price;
+  // }
 
   async getOrders(limit: number, isBid: boolean) {
     const tx = new Transaction();
@@ -79,7 +81,7 @@ export class DeepBookService {
     });
 
     const orders = bcs
-      .vector(Order)
+      .vector(Order.bcs)
       .parse(new Uint8Array(res.results![1].returnValues![0][0]));
 
     return orders;
