@@ -7,6 +7,7 @@ import { SuiPriceModule } from './sui-price/sui-price.module';
 import { ApiKeyMiddleware } from './common/middleware/api-key.middleware';
 import { CacheModule } from '@nestjs/cache-manager';
 import { BucketModule } from './bucket/bucket.module';
+import { PriceModule } from './price/price.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { BucketModule } from './bucket/bucket.module';
     CacheModule.register({
       ttl: 30, // 快取 30 秒
     }),
+    PriceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
