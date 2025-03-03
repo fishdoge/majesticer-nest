@@ -9,7 +9,7 @@ export class SuiPriceService {
 
   constructor(private readonly httpService: HttpService) {}
 
-  async getCurrentPrice(): Promise<{
+  async getCurrentPrice(currency: string): Promise<{
     price: number;
     timestamp: number;
     currency: string;
@@ -18,7 +18,7 @@ export class SuiPriceService {
       this.httpService
         .get('https://api.coingecko.com/api/v3/simple/price', {
           params: {
-            ids: 'sui',
+            ids: currency,
             vs_currencies: 'usd',
             include_last_updated_at: true,
           },
@@ -32,9 +32,9 @@ export class SuiPriceService {
     );
 
     return {
-      price: data.sui.usd,
-      timestamp: data.sui.last_updated_at * 1000, // 轉換為毫秒
+      price: data[currency].usd,
+      timestamp: data[currency].last_updated_at * 1000, // 轉換為毫秒
       currency: 'USD',
     };
   }
-} 
+}

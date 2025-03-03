@@ -1,0 +1,29 @@
+import * as package_onchain_1798f84ee72176114ddbf5525a6d964c5f8ea1b3738d08d50d0d3de4cf584884 from "../_dependencies/onchain/0x1798f84ee72176114ddbf5525a6d964c5f8ea1b3738d08d50d0d3de4cf584884/init";
+import * as package_onchain_2 from "../_dependencies/onchain/0x2/init";
+import * as package_onchain_5306f64e312b581766351c07af79c72fcb1cd25147157fdc2f8ad76de9a3fb6a from "../_dependencies/onchain/0x5306f64e312b581766351c07af79c72fcb1cd25147157fdc2f8ad76de9a3fb6a/init";
+import * as package_onchain_5d8fbbf6f908a4af8c6d072669a462d53e03eb3c1d863bd0359dc818c69ea706 from "../_dependencies/onchain/0x5d8fbbf6f908a4af8c6d072669a462d53e03eb3c1d863bd0359dc818c69ea706/init";
+import * as package_onchain_8d79f4d920b03d88faca1e421af023a87fbb1e4a6fd200248e6e9998d09e470 from "../_dependencies/onchain/0x8d79f4d920b03d88faca1e421af023a87fbb1e4a6fd200248e6e9998d09e470/init";
+import * as package_onchain_b53b0f4174108627fbee72e2498b58d6a2714cded53fac537034c220d26302 from "../_dependencies/onchain/0xb53b0f4174108627fbee72e2498b58d6a2714cded53fac537034c220d26302/init";
+import * as package_onchain_deeb7a4662eec9f2f3def03fb937a663dddaa2e215b8078a284d026b7946c270 from "../_dependencies/onchain/0xdeeb7a4662eec9f2f3def03fb937a663dddaa2e215b8078a284d026b7946c270/init";
+import * as package_onchain_ce7ff77a83ea0cb6fd39bd8748e2ec89a3f41e8efdc3f4eb123e0ca37b184db2 from "../bucket/init";
+import * as package_onchain_db9a10bb9536ab367b7d1ffa404c1d6c55f009076df1139dc108dd86608bbe from "../bucket_framework/init";
+import * as package_onchain_f145ee6d09aae034924f80672bc76db2415dfd1b1bed863ac289af9d94e2c4fc from "../bucket_oracle/init";
+import * as package_onchain_2c8d603bc51326b8c13cef9dd07031a408a48dddb541963357661df5d3204809 from "../deep_book/init";
+import * as package_onchain_1 from "../std/init";
+import {StructClassLoader} from "./loader";
+
+function registerClassesOnchain(loader: StructClassLoader) { package_onchain_1.registerClasses(loader);
+package_onchain_2.registerClasses(loader);
+package_onchain_b53b0f4174108627fbee72e2498b58d6a2714cded53fac537034c220d26302.registerClasses(loader);
+package_onchain_db9a10bb9536ab367b7d1ffa404c1d6c55f009076df1139dc108dd86608bbe.registerClasses(loader);
+package_onchain_8d79f4d920b03d88faca1e421af023a87fbb1e4a6fd200248e6e9998d09e470.registerClasses(loader);
+package_onchain_1798f84ee72176114ddbf5525a6d964c5f8ea1b3738d08d50d0d3de4cf584884.registerClasses(loader);
+package_onchain_2c8d603bc51326b8c13cef9dd07031a408a48dddb541963357661df5d3204809.registerClasses(loader);
+package_onchain_5306f64e312b581766351c07af79c72fcb1cd25147157fdc2f8ad76de9a3fb6a.registerClasses(loader);
+package_onchain_5d8fbbf6f908a4af8c6d072669a462d53e03eb3c1d863bd0359dc818c69ea706.registerClasses(loader);
+package_onchain_ce7ff77a83ea0cb6fd39bd8748e2ec89a3f41e8efdc3f4eb123e0ca37b184db2.registerClasses(loader);
+package_onchain_deeb7a4662eec9f2f3def03fb937a663dddaa2e215b8078a284d026b7946c270.registerClasses(loader);
+package_onchain_f145ee6d09aae034924f80672bc76db2415dfd1b1bed863ac289af9d94e2c4fc.registerClasses(loader);
+ }
+
+export function registerClasses(loader: StructClassLoader) { registerClassesOnchain(loader); }
