@@ -15,8 +15,12 @@ export class ApiKeysService {
       where: { walletAddress },
     });
 
+    // 如果已存在，直接返回現有的 API key
     if (existing) {
-      throw new ConflictException('Wallet address already has an API key');
+      return {
+        apiKey: existing.apiKey,
+        walletAddress: existing.walletAddress,
+      };
     }
 
     // 生成新的 API key
@@ -56,4 +60,4 @@ export class ApiKeysService {
 
     return null;
   }
-} 
+}
