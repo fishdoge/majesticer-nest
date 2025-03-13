@@ -7,8 +7,8 @@ import { SuiPriceModule } from './sui-price/sui-price.module';
 import { ApiKeyMiddleware } from './common/middleware/api-key.middleware';
 import { CacheModule } from '@nestjs/cache-manager';
 import { BucketModule } from './bucket/bucket.module';
-import { PriceModule } from './price/price.module';
-import { DeepBookModule } from './deepbook/deepbook.module';
+// import { PriceModule } from './price/price.module';
+// import { DeepBookModule } from './deepbook/deepbook.module';
 
 @Module({
   imports: [
@@ -19,8 +19,8 @@ import { DeepBookModule } from './deepbook/deepbook.module';
     CacheModule.register({
       ttl: 30, // 快取 30 秒
     }),
-    PriceModule,
-    DeepBookModule,
+    // PriceModule,
+    // DeepBookModule,
   ],
   controllers: [AppController],
   providers: [AppService],
